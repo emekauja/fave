@@ -5,10 +5,14 @@ interface IFavoriteCardProps {}
 
 export const LikedCatCard: React.FC<IFavoriteCardProps> = ({}) => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>FavoriteCard</Text>
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
