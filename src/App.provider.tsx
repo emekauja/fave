@@ -30,10 +30,12 @@ const setAppData = async (newData: IAppData) => {
 interface IAppContext {
   likedCatList: ILikedCat[];
   handleCatLike: (cat: CatType) => void;
+  handleDeleteCat: (cat: ILikedCat) => void;
 }
 const defaultValue = {
   likedCatList: [],
   handleCatLike: () => {},
+  handleDeleteCat: () => {},
 };
 const AppContext = React.createContext<IAppContext>(defaultValue);
 
@@ -62,8 +64,19 @@ export const AppProvider: React.FC = ({ children }) => {
     });
   }, []);
 
+  const handleDeleteCat = React.useCallback((catToDelete: ILikedCat) => {
+    setLikedCatList(current => {
+      const newValue = current.filter(
+        item => item.cat.id !== catToDelete.cat.id,
+      );
+      setAppData({ cats: newValue });
+      return newValue;
+    });
+  }, []);
+
   return (
-    <AppContext.Provider value={{ likedCatList, handleCatLike }}>
+    <AppContext.Provider
+      value={{ likedCatList, handleCatLike, handleDeleteCat }}>
       {children}
     </AppContext.Provider>
   );

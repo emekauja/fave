@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home } from './Home.screen';
 import { Favorite } from './Favorite.screen';
-import { AllCatsIcon, LikedCatsIcon } from '../components/Icons';
+import { CatIcon, HeartIcon } from '../components/Icons';
 import { theme } from '../theme';
 
 const BottomTabs = createBottomTabNavigator();
@@ -15,6 +15,11 @@ export const BottomTabsNavigator: React.FC = ({}) => {
         tabBarActiveTintColor: theme.colorBlack,
         tabBarInactiveTintColor: theme.colorGrey,
         headerTitleAlign: 'left',
+        headerTitleStyle: { fontFamily: theme.fontFamilyBold },
+        tabBarLabelStyle: {
+          fontFamily: theme.fontFamilyRegular,
+          fontSize: 13,
+        },
         headerStyle: {
           // below four properties will remove the shadow
           borderBottomColor: 'transparent',
@@ -30,7 +35,7 @@ export const BottomTabsNavigator: React.FC = ({}) => {
           title: 'All Cats',
           tabBarLabel: 'All cats',
           tabBarIcon: ({ color, size }) => (
-            <AllCatsIcon {...{ color }} {...{ size }} />
+            <CatIcon {...{ color }} {...{ size }} />
           ),
         }}
       />
@@ -41,7 +46,7 @@ export const BottomTabsNavigator: React.FC = ({}) => {
           title: 'Cats I Like',
           tabBarLabel: 'Cats i like',
           tabBarIcon: ({ color, size }) => (
-            <LikedCatsIcon {...{ color }} {...{ size }} />
+            <HeartIcon {...{ color }} {...{ size }} />
           ),
         }}
       />
